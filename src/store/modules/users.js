@@ -58,7 +58,7 @@ export default {
       if (getters.selectedUsers === null) {
         commit("SET_SELECTED_USERS", []);
       }
-      if (getters.selectedUsers.find((el) => el.id === selectedUser.payload)) {
+      if (getters.selectedUsers.find((el) => el.id === selectedUser.id)) {
         commit("DELETE_SELECTED_USER", payload);
       } else {
         commit("ADD_SELECTED_USER", selectedUser);
