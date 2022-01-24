@@ -1,6 +1,6 @@
 <template>
-  <div class="all-users">
-    <div class="all-users__wrapper" v-if="this.isAllUsers">
+  <div class="all-users" v-if="this.isAllUsers">
+    <div class="all-users__wrapper">
       <div class="all-users__user" v-for="user in this.allUsers" :key="user.id">
         <div
           class="all-users__user-info-wrapper"
