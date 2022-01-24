@@ -1,33 +1,53 @@
 <template>
-  <div class="main">
-    <AllUsers />
-    <SelectedUsers />
+  <div class="selected-users">
+    <div class="selected-users__wrapper" v-if="this.selectedUsers">
+      <div
+        class="selected-users__user"
+        v-for="user in this.selectedUsers"
+        :key="user.id"
+      >
+        <div
+          class="selected-users__user-info-wrapper"
+          @click="selectUser(user.id), toggleClass($event)"
+        >
+          <img
+            class="selected-users__user-avatar"
+            :src="user.avatar_url"
+            alt=""
+          />
+          <p class="selected-users__user-login">{{ user.login }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import AllUsers from "./Users/AllUsers.vue";
-import SelectedUsers from "./Users/SelectedUsers.vue";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
-  name: "Main",
-  components: { AllUsers, SelectedUsers },
-
+  name: "SelectedUsers",
   data() {
     return {};
   },
-  computed: {},
-  methods: {},
+
+  computed: {
+    ...mapGetters(["selectedUsers"]),
+  },
+
+  methods: {
+    ...mapActions(["selectUser", "getUsers"]),
+  },
 };
 </script>
 
 <style lang="scss">
-.main {
+.all-users {
   width: 100vw;
   height: auto;
   background: hsl(96, 39%, 64%);
 
-  &__all-users-wrapper {
+  &__wrapper {
     max-width: 300px;
     margin: 0 auto;
   }
