@@ -1,6 +1,5 @@
 <template>
   <div class="sidebar" v-if="isSidebar">
-    <p>Sidebar</p>
     <button class="sidebar__all-users-btn" @click="initAllUsers">
       All users
     </button>
@@ -38,14 +37,27 @@ export default {
   position: fixed;
   top: 44px;
   right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
 
-  &__all-users-btn {
-    width: 100px;
-    height: 100px;
-    padding: 20px;
+  &__all-users-btn,
+  &__selected-users-btn {
     text-transform: uppercase;
-    border-radius: 50%;
-    border: none;
+    cursor: pointer;
+    padding: 5%;
+    margin: 3%;
+    margin-bottom: 0;
+    width: 100%;
+    border-radius: 30px;
+    background: hsl(0, 0%, 100%);
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background: hsl(178, 63%, 39%);
+      color: hsl(0, 0%, 100%);
+    }
   }
 }
 </style>

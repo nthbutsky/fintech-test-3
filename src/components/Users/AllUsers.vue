@@ -149,7 +149,6 @@ export default {
       top: 70px;
       left: 50%;
       transform: translate(-50%);
-
       background: hsla(0, 0%, 0%, 0.502);
     }
 
