@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <p>USERS</p>
+    <p class="header__title">{{ title }}</p>
     <div
       class="header__hamburger-btn"
       :class="{ 'header__hamburger-btn_clicked': isSidebar }"
@@ -24,7 +24,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["isSidebar"]),
+    ...mapGetters(["isSidebar", "title"]),
   },
 
   methods: {
@@ -48,7 +48,11 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: hsl(0, 0%, 100%);
+
+  &__title {
+    color: hsl(0, 0%, 100%);
+    text-transform: uppercase;
+  }
 
   &__hamburger-btn {
     position: absolute;
@@ -56,13 +60,17 @@ export default {
     right: 0;
     cursor: pointer;
 
+    &:hover .header__hamburger-btn-bar {
+      background: hsl(178, 63%, 39%);
+    }
+
     &-bar {
       display: block;
       width: 1.875rem;
       height: 0.25rem;
       margin: 8px;
       transition: all 0.3s ease-in-out;
-      background-color: hsl(0, 0%, 100%);
+      background: hsl(0, 0%, 100%);
       cursor: pointer;
     }
 

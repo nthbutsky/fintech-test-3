@@ -5,6 +5,7 @@ export default {
     isAllUsers: true,
     isSelectedUsers: false,
     apiUrl: "https://api.github.com/users",
+    title: "all users",
   },
 
   getters: {
@@ -26,6 +27,10 @@ export default {
 
     apiUrl(state) {
       return state.apiUrl;
+    },
+
+    title(state) {
+      return state.title;
     },
   },
 
