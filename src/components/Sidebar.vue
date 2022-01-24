@@ -27,7 +27,7 @@ export default {
   max-width: 12.5rem;
   height: 100vh;
   background: gray;
-  position: absolute;
+  position: fixed;
   top: 44px;
   right: 0;
 }
