@@ -5,7 +5,6 @@ export default {
     isAllUsers: true,
     isSelectedUsers: false,
     apiUrl: "https://api.github.com/users",
-    title: "all users",
   },
 
   getters: {
@@ -27,10 +26,6 @@ export default {
 
     apiUrl(state) {
       return state.apiUrl;
-    },
-
-    title(state) {
-      return state.title;
     },
   },
 
@@ -61,6 +56,10 @@ export default {
       state.selectedUsers = state.selectedUsers.filter(
         (el) => el.id !== payload
       );
+    },
+
+    DELETE_ALL_USERS(state) {
+      state.selectedUsers = null;
     },
   },
 
@@ -98,6 +97,10 @@ export default {
 
     initSelectedUsers({ commit }) {
       commit("SHOW_SELECTED_USERS");
+    },
+
+    clearUsersList({ commit }) {
+      commit("DELETE_ALL_USERS");
     },
   },
 };

@@ -6,7 +6,10 @@
         v-for="user in this.selectedUsers"
         :key="user.id"
       >
-        <div class="selected-users__user-info-wrapper">
+        <div
+          class="selected-users__user-info-wrapper"
+          @click="selectUser(user.id)"
+        >
           <img
             class="selected-users__user-avatar"
             :src="user.avatar_url"
@@ -16,11 +19,21 @@
         </div>
       </div>
     </div>
+    <p class="selected-users__no-user-text" v-if="!this.selectedUsers">
+      no selected users
+    </p>
+    <button
+      class="selected-users__delete-all-btn"
+      v-if="this.selectedUsers"
+      @click="clearUsersList()"
+    >
+      X
+    </button>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "SelectedUsers",
@@ -30,6 +43,10 @@ export default {
 
   computed: {
     ...mapGetters(["selectedUsers", "isSelectedUsers"]),
+  },
+
+  methods: {
+    ...mapActions(["selectUser", "clearUsersList"]),
   },
 };
 </script>
@@ -79,6 +96,29 @@ export default {
       text-overflow: ellipsis;
       color: hsl(0, 0%, 100%);
       font-size: 1.5rem;
+    }
+  }
+
+  &__no-user-text {
+    color: white;
+    text-transform: uppercase;
+    margin: 50px auto;
+  }
+
+  &__delete-all-btn {
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: hsl(0, 0%, 100%);
+    transition: all 0.3s ease-in-out;
+    margin: 20px;
+
+    &:hover {
+      background: hsl(178, 63%, 39%);
     }
   }
 }

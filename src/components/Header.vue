@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <p class="header__title">{{ title }}</p>
+    <p class="header__title">{{ titlify }}</p>
     <div
       class="header__hamburger-btn"
       :class="{ 'header__hamburger-btn_clicked': isSidebar }"
@@ -24,7 +24,15 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["isSidebar", "title"]),
+    ...mapGetters(["isSidebar", "isAllUsers"]),
+
+    titlify() {
+      if (this.isAllUsers) {
+        return "all users";
+      } else {
+        return "selected users";
+      }
+    },
   },
 
   methods: {
@@ -52,6 +60,8 @@ export default {
   &__title {
     color: hsl(0, 0%, 100%);
     text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.5rem;
   }
 
   &__hamburger-btn {

@@ -1,9 +1,17 @@
 <template>
   <div class="sidebar" v-if="isSidebar">
-    <button class="sidebar__all-users-btn" @click="initAllUsers">
+    <button
+      class="sidebar__all-users-btn"
+      :class="{ 'sidebar__all-users-btn_clicked': isAllUsers }"
+      @click="initAllUsers"
+    >
       All users
     </button>
-    <button class="sidebar__selected-users-btn" @click="initSelectedUsers">
+    <button
+      class="sidebar__selected-users-btn"
+      :class="{ 'sidebar__all-users-btn_clicked': isSelectedUsers }"
+      @click="initSelectedUsers"
+    >
       Selected users
     </button>
   </div>
@@ -19,7 +27,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["isSidebar"]),
+    ...mapGetters(["isSidebar", "isSelectedUsers", "isAllUsers"]),
   },
 
   methods: {
@@ -51,8 +59,13 @@ export default {
     margin-bottom: 0;
     width: 100%;
     border-radius: 30px;
+    border: none;
     background: hsl(0, 0%, 100%);
     transition: all 0.3s ease-in-out;
+
+    &_clicked {
+      background: hsl(178, 63%, 39%);
+    }
 
     &:hover {
       background: hsl(178, 63%, 39%);
