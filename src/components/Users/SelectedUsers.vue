@@ -80,37 +80,6 @@ export default {
       color: hsl(0, 0%, 100%);
       font-size: 1.5rem;
     }
-
-    &-details-btn {
-      background: transparent;
-      border: 2px solid hsla(0, 0%, 0%, 0.502);
-      border-radius: 50%;
-      color: hsl(0, 0%, 100%);
-      width: 100px;
-      height: 20px;
-      border-bottom-left-radius: 150px;
-      border-bottom-right-radius: 150px;
-      position: absolute;
-      top: 70px;
-      left: 50%;
-      transform: translate(-50%);
-      background: hsla(0, 0%, 0%, 0.502);
-    }
-
-    &-details-wrapper {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: hsl(0, 0%, 100%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    &-details-text {
-    }
   }
 }
 </style>

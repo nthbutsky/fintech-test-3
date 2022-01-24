@@ -21,12 +21,22 @@
         v-if="this.userDetails"
         @click="closeInfoModal()"
       >
+        <img
+          class="all-users__user-details-img"
+          :src="userDetails.avatar_url"
+          alt=""
+        />
         <div class="all-users__user-details-text">
-          <img :src="userDetails.avatar_url" alt="" />
           <p>Login: {{ userDetails.login }}</p>
           <p>Name: {{ userDetails.name ? userDetails.name : "Unknown" }}</p>
           <p>Company: {{ userDetails.name ? userDetails.name : "Unknown" }}</p>
           <p>Location: {{ userDetails.name ? userDetails.name : "Unknown" }}</p>
+          <p>
+            Blog:
+            <a :href="userDetails.blog" target="black">
+              {{ userDetails.blog ? userDetails.blog : "Unknown" }}</a
+            >
+          </p>
         </div>
       </div>
     </div>
@@ -156,15 +166,39 @@ export default {
       position: fixed;
       top: 0;
       left: 0;
+      z-index: 2;
       width: 100%;
       height: 100%;
-      background: hsl(0, 0%, 100%);
+      background: hsla(0, 0%, 100%, 0.5);
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
     }
+    &-details-img {
+      width: 300px;
+      border-radius: 25%;
+      border: 5px solid hsla(0, 0%, 0%, 0.75);
+    }
 
     &-details-text {
+      padding: 10px;
+      margin: 10px;
+      background: hsla(0, 0%, 0%, 0.75);
+      color: hsl(0, 0%, 100%);
+      border-radius: 20px;
+      font-size: 1.5rem;
+
+      a {
+        text-decoration: none;
+        color: hsl(0, 0%, 100%);
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+          color: hsl(178, 63%, 39%);
+        }
+      }
     }
   }
 }
