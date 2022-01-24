@@ -26,6 +26,8 @@ export default {
 
 <style lang="scss">
 .main {
+  height: 100vh;
+
   &__bg-wrapper {
     position: fixed;
     z-index: -1;
