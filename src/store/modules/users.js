@@ -2,6 +2,8 @@ export default {
   state: {
     allUsers: null,
     selectedUsers: null,
+    isAllUsers: true,
+    isSelectedUsers: false,
     apiUrl: "https://api.github.com/users",
   },
 
@@ -12,6 +14,14 @@ export default {
 
     selectedUsers(state) {
       return state.selectedUsers;
+    },
+
+    isAllUsers(state) {
+      return state.isAllUsers;
+    },
+
+    isSelectedUsers(state) {
+      return state.isSelectedUsers;
     },
 
     apiUrl(state) {
@@ -26,6 +36,16 @@ export default {
 
     SET_SELECTED_USERS(state, payload) {
       state.selectedUsers = payload;
+    },
+
+    SHOW_ALL_USERS(state) {
+      state.isAllUsers = true;
+      state.isSelectedUsers = false;
+    },
+
+    SHOW_SELECTED_USERS(state) {
+      state.isAllUsers = false;
+      state.isSelectedUsers = true;
     },
 
     ADD_SELECTED_USER(state, payload) {
@@ -65,6 +85,14 @@ export default {
       }
       console.log(selectedUser);
       console.log(getters.selectedUsers);
+    },
+
+    initAllUsers({ commit }) {
+      commit("SHOW_ALL_USERS");
+    },
+
+    initSelectedUsers({ commit }) {
+      commit("SHOW_SELECTED_USERS");
     },
   },
 };

@@ -43,10 +43,12 @@ export default {
   width: 100vw;
   position: fixed;
   top: 0;
-  background: white;
+  z-index: 1;
+  background: hsl(0, 0%, 4%);
   display: flex;
   justify-content: center;
   align-items: center;
+  color: hsl(0, 0%, 100%);
 
   &__hamburger-btn {
     position: absolute;
@@ -60,7 +62,7 @@ export default {
       height: 0.25rem;
       margin: 8px;
       transition: all 0.3s ease-in-out;
-      background-color: hsl(0, 0%, 20%);
+      background-color: hsl(0, 0%, 100%);
       cursor: pointer;
     }
 

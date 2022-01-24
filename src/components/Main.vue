@@ -1,5 +1,8 @@
 <template>
   <div class="main">
+    <div class="main__bg-wrapper">
+      <img class="main__bg" src="../assets/bg.jpg" alt="" />
+    </div>
     <AllUsers />
     <SelectedUsers />
   </div>
@@ -23,62 +26,22 @@ export default {
 
 <style lang="scss">
 .main {
-  width: 100vw;
-  height: auto;
-  background: hsl(96, 39%, 64%);
-
-  &__all-users-wrapper {
-    max-width: 300px;
-    margin: 0 auto;
+  &__bg-wrapper {
+    position: fixed;
+    z-index: -1;
+    height: 100vh;
+    width: 100vw;
+    background: hsl(1, 1%, 12%);
   }
 
-  &__user {
-    max-width: 150px;
-    margin: 0 auto;
-
-    &-info-wrapper {
-      padding: 3%;
-      margin: 3%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      border: 2px solid black;
-      border-radius: 30px;
-
-      &_selected {
-        border: 2px solid red;
-      }
-    }
-
-    &-avatar {
-      max-width: 50px;
-      border-radius: 50%;
-      padding: 1%;
-    }
-
-    &-login {
-      padding: 2%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    &-details-btn {
-    }
-
-    &-details-wrapper {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    &-details-text {
-    }
+  &__bg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    width: fit-content;
+    height: auto;
   }
 }
 </style>

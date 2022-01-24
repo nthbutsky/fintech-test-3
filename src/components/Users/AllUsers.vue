@@ -1,6 +1,6 @@
 <template>
   <div class="all-users">
-    <div class="all-users__wrapper" v-if="this.allUsers">
+    <div class="all-users__wrapper" v-if="this.isAllUsers">
       <div class="all-users__user" v-for="user in this.allUsers" :key="user.id">
         <div
           class="all-users__user-info-wrapper"
@@ -13,7 +13,7 @@
           class="all-users__user-details-btn"
           @click="getUserDetails(user.login)"
         >
-          more info
+          ^
         </button>
       </div>
       <div
@@ -46,7 +46,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["allUsers", "selectedUsers", "apiUrl"]),
+    ...mapGetters(["allUsers", "selectedUsers", "apiUrl", "isAllUsers"]),
   },
 
   methods: {
@@ -89,25 +89,32 @@ export default {
 .all-users {
   width: 100vw;
   height: auto;
-  background: hsl(96, 39%, 64%);
+  padding: 10%;
 
   &__wrapper {
-    max-width: 300px;
+    max-width: 700px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
   &__user {
-    max-width: 150px;
+    width: 200px;
+    height: 100px;
     margin: 0 auto;
+    position: relative;
 
     &-info-wrapper {
       padding: 3%;
       margin: 3%;
+      margin-bottom: 0;
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      border: 2px solid black;
+      border: 2px solid hsl(0, 0%, 4%);
       border-radius: 30px;
+      background: hsla(0, 0%, 0%, 0.5);
 
       &_selected {
         border: 2px solid red;
@@ -118,15 +125,32 @@ export default {
       max-width: 50px;
       border-radius: 50%;
       padding: 1%;
+      border: 2px solid hsl(0, 0%, 100%);
     }
 
     &-login {
-      padding: 2%;
+      padding: 5%;
       overflow: hidden;
       text-overflow: ellipsis;
+      color: hsl(0, 0%, 100%);
+      font-size: 1.5rem;
     }
 
     &-details-btn {
+      background: transparent;
+      border: 2px solid hsla(0, 0%, 0%, 0.502);
+      border-radius: 50%;
+      color: hsl(0, 0%, 100%);
+      width: 100px;
+      height: 20px;
+      border-bottom-left-radius: 150px;
+      border-bottom-right-radius: 150px;
+      position: absolute;
+      top: 70px;
+      left: 50%;
+      transform: translate(-50%);
+
+      background: hsla(0, 0%, 0%, 0.502);
     }
 
     &-details-wrapper {
@@ -135,7 +159,7 @@ export default {
       left: 0;
       width: 100%;
       height: 100%;
-      background: white;
+      background: hsl(0, 0%, 100%);
       display: flex;
       justify-content: center;
       align-items: center;
