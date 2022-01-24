@@ -122,12 +122,26 @@ export default {
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      border: 2px solid hsl(0, 0%, 4%);
       border-radius: 30px;
       background: hsla(0, 0%, 0%, 0.5);
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background: hsl(178, 63%, 39%);
+        color: black;
+      }
+
+      &:hover .all-users__user-avatar {
+        border: 2px solid hsl(0, 0%, 0%);
+      }
+
+      &:hover .all-users__user-login {
+        color: hsl(0, 0%, 0%);
+      }
 
       &_selected {
-        border: 2px solid red;
+        background: hsl(332, 61%, 61%);
       }
     }
 
@@ -136,6 +150,8 @@ export default {
       border-radius: 50%;
       padding: 1%;
       border: 2px solid hsl(0, 0%, 100%);
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
     }
 
     &-login {
@@ -144,11 +160,13 @@ export default {
       text-overflow: ellipsis;
       color: hsl(0, 0%, 100%);
       font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
     }
 
     &-details-btn {
       background: transparent;
-      border: 2px solid hsla(0, 0%, 0%, 0.502);
+      border: none;
       border-radius: 50%;
       color: hsl(0, 0%, 100%);
       width: 100px;
@@ -156,10 +174,19 @@ export default {
       border-bottom-left-radius: 150px;
       border-bottom-right-radius: 150px;
       position: absolute;
-      top: 70px;
+      top: 68px;
       left: 50%;
+      padding-top: 3px;
       transform: translate(-50%);
       background: hsla(0, 0%, 0%, 0.502);
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background: hsl(178, 63%, 39%);
+        color: black;
+      }
     }
 
     &-details-wrapper {
