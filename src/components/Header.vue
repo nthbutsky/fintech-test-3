@@ -1,5 +1,7 @@
 <template>
   <div class="header">
+    <i class="header__search-icon fa fa-search" @click="showSearch()"></i>
+    <input class="header__search-input" type="text" placeholder="search" />
     <p class="header__title">{{ titlify }}</p>
     <div
       class="header__hamburger-btn"
@@ -41,6 +43,11 @@ export default {
     showSidebar() {
       this.openCloseSidebar();
     },
+
+    showSearch() {
+      const searchInput = document.querySelector(".header__search-input");
+      searchInput.classList.toggle("header__search-input_active");
+    },
   },
 };
 </script>
@@ -56,6 +63,36 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &__search-icon {
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 1.5rem;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  &__search-input {
+    position: fixed;
+    top: 4px;
+    left: -10px;
+    height: 36px;
+    width: 0;
+    padding-left: 5px;
+    transition: all 0.3s ease-in-out;
+
+    &_active {
+      left: 4px;
+      width: 100px;
+    }
+
+    &:focus {
+      outline: none;
+      border-radius: 10px;
+    }
+  }
 
   &__title {
     color: hsl(0, 0%, 100%);
