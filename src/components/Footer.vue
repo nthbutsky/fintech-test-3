@@ -1,6 +1,11 @@
 <template>
   <div class="footer">
-    <a class="footer__link" href="#" target="blank">GitHub Repo</a>
+    <a
+      class="footer__link"
+      href="https://github.com/nthbutsky/fintech-test-3"
+      target="blank"
+      >GitHub Repo</a
+    >
   </div>
 </template>
 
