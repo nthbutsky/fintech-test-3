@@ -5,6 +5,8 @@ export default {
     isAllUsers: true,
     isSelectedUsers: false,
     apiUrl: "https://api.github.com/users",
+    userSearch: "",
+    filteredUsers: "",
   },
 
   getters: {
@@ -27,11 +29,20 @@ export default {
     apiUrl(state) {
       return state.apiUrl;
     },
+
+    userSearch(state) {
+      return state.userSearch;
+    },
+
+    filteredUsers(state) {
+      return state.filteredUsers;
+    },
   },
 
   mutations: {
     SET_ALL_USERS(state, payload) {
       state.allUsers = payload;
+      state.filteredUsers = state.allUsers;
     },
 
     SET_SELECTED_USERS(state, payload) {
@@ -60,6 +71,16 @@ export default {
 
     DELETE_ALL_USERS(state) {
       state.selectedUsers = null;
+    },
+
+    UPDATE_SEARCH(state, payload) {
+      state.userSearch = payload;
+    },
+
+    SET_FILTERED_USER_LIST(state, payload) {
+      state.filteredUsers = state.allUsers.filter((user) => {
+        return user.login.toLowerCase().includes(payload.toLowerCase());
+      });
     },
   },
 
@@ -101,6 +122,10 @@ export default {
 
     clearUsersList({ commit }) {
       commit("DELETE_ALL_USERS");
+    },
+
+    searchUser({ commit }, payload) {
+      commit("SET_FILTERED_USER_LIST", payload);
     },
   },
 };

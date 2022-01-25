@@ -1,7 +1,12 @@
 <template>
   <div class="header">
     <i class="header__search-icon fa fa-search" @click="showSearch()"></i>
-    <input class="header__search-input" type="text" placeholder="search" />
+    <input
+      class="header__search-input"
+      type="text"
+      placeholder="search"
+      v-model="search"
+    />
     <p class="header__title">{{ titlify }}</p>
     <div
       class="header__hamburger-btn"
@@ -26,7 +31,17 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["isSidebar", "isAllUsers"]),
+    ...mapGetters(["isSidebar", "isAllUsers", "userSearch"]),
+
+    search: {
+      get() {
+        return this.userSearch;
+      },
+      set(value) {
+        this.$store.commit("UPDATE_SEARCH", value);
+        this.$store.commit("SET_FILTERED_USER_LIST", value);
+      },
+    },
 
     titlify() {
       if (this.isAllUsers) {
