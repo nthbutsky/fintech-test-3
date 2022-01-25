@@ -1,6 +1,9 @@
 <template>
   <div class="header">
     <i class="header__search-icon fa fa-search" @click="showSearch()"></i>
+    <button class="header__sort-icon" @click="sortAlphabetically()">
+      <i class="fa fa-sort"></i>
+    </button>
     <input
       class="header__search-input"
       type="text"
@@ -31,7 +34,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["isSidebar", "isAllUsers", "userSearch"]),
+    ...mapGetters(["isSidebar", "isAllUsers", "userSearch", "allUsers"]),
 
     search: {
       get() {
@@ -63,6 +66,19 @@ export default {
       const searchInput = document.querySelector(".header__search-input");
       searchInput.classList.toggle("header__search-input_active");
     },
+
+    sortAlphabetically() {
+      const list = this.allUsers.sort((a, b) => {
+        if (a.login.toUpperCase() < b.login.toUpperCase()) {
+          return -1;
+        }
+        if (a.login.toUpperCase() > b.login.toUpperCase()) {
+          return 0;
+        }
+        return 0;
+      });
+      this.$store.state.allUsers = list;
+    },
   },
 };
 </script>
@@ -87,6 +103,33 @@ export default {
     font-size: 1.5rem;
     padding: 10px;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      color: hsl(178, 63%, 39%);
+    }
+  }
+
+  &__sort-icon {
+    position: fixed;
+    top: 8px;
+    left: 40px;
+    height: 30px;
+    width: 30px;
+    font-size: 1.6rem;
+    color: white;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    i {
+      cursor: pointer;
+    }
+
+    &:hover {
+      color: hsl(178, 63%, 39%);
+    }
   }
 
   &__search-input {
