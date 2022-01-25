@@ -67,6 +67,9 @@ export default {
       state.selectedUsers = state.selectedUsers.filter(
         (el) => el.id !== payload
       );
+      if (state.selectedUsers.length === 0) {
+        state.selectedUsers = null;
+      }
     },
 
     DELETE_ALL_USERS(state) {
@@ -108,8 +111,14 @@ export default {
       } else {
         commit("ADD_SELECTED_USER", selectedUser);
       }
-      console.log(selectedUser);
-      console.log(getters.selectedUsers);
+      localStorage.setItem(
+        "selectedUsers",
+        JSON.stringify(getters.selectedUsers)
+      );
+    },
+
+    getSelectedUsers({ commit }, payload) {
+      commit("SET_SELECTED_USERS", payload);
     },
 
     initAllUsers({ commit }) {
@@ -121,6 +130,7 @@ export default {
     },
 
     clearUsersList({ commit }) {
+      localStorage.removeItem("selectedUsers");
       commit("DELETE_ALL_USERS");
     },
 

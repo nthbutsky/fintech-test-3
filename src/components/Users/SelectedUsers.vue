@@ -1,6 +1,6 @@
 <template>
-  <div class="selected-users">
-    <div class="selected-users__wrapper" v-if="this.isSelectedUsers">
+  <div class="selected-users" v-if="this.isSelectedUsers">
+    <div class="selected-users__wrapper">
       <div
         class="selected-users__user"
         v-for="user in this.selectedUsers"
@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <p class="selected-users__no-user-text" v-if="!this.selectedUsers">
+    <p class="selected-users__no-user-text" v-if="this.selectedUsers === null">
       no selected users
     </p>
     <button
@@ -46,7 +46,12 @@ export default {
   },
 
   methods: {
-    ...mapActions(["selectUser", "clearUsersList"]),
+    ...mapActions(["selectUser", "clearUsersList", "getSelectedUsers"]),
+  },
+
+  mounted() {
+    const savedUsers = JSON.parse(localStorage.getItem("selectedUsers"));
+    this.getSelectedUsers(savedUsers);
   },
 };
 </script>
@@ -78,7 +83,6 @@ export default {
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      border: 2px solid hsl(0, 0%, 4%);
       border-radius: 30px;
       background: hsla(0, 0%, 0%, 0.5);
     }
